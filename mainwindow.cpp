@@ -1,9 +1,6 @@
-#include "mainwindow.h"
+﻿#include "mainwindow.h"
 #include "ui_mainwindow.h"
-
 #include <QMessageBox>
-#include <QInputDialog>
-
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -24,16 +21,16 @@ MainWindow::~MainWindow()
 void MainWindow::initBooks()
 {
     books = {
-        {"《三体》", "刘慈欣", "重庆出版社"},
-        {"《百年孤独》", "加西亚·马尔克斯", "南海出版公司"},
-        {"《围城》", "钱钟书", "人民文学出版社"},
-        {"《哈利·波特与魔法石》", "J.K.罗琳", "布卢姆斯伯里出版社"},
-        {"《解忧杂货店》", "东野圭吾", "现代出版社"},
-        {"《乌合之众》", "古斯塔夫·勒庞", "中央编译出版社"},
-        {"《追风筝的人》", "卡勒德·胡赛尼", "上海人民出版社"},
-        {"《小王子》", "安托万·德·圣埃克苏佩里", "人民文学出版社"},
-        {"《梦里花落知多少》", "三毛", "北京十月文艺出版社"},
-        {"《沉默的大多数》", "王小波", "北方文艺出版社"}
+        {L"《三体》", L"刘慈欣", L"重庆出版社"},
+        {L"《百年孤独》", L"加西亚·马尔克斯", L"南海出版公司"},
+        {L"《围城》", L"钱钟书", L"人民文学出版社"},
+        {L"《哈利·波特与魔法石》", L"J.K.罗琳", L"布卢姆斯伯里出版社"},
+        {L"《解忧杂货店》", L"东野圭吾", L"现代出版社"},
+        {L"《乌合之众》", L"古斯塔夫·勒庞", L"中央编译出版社"},
+        {L"《追风筝的人》", L"卡勒德·胡赛尼", L"上海人民出版社"},
+        {L"《小王子》", L"安托万·德·圣埃克苏佩里", L"人民文学出版社"},
+        {L"《梦里花落知多少》", L"三毛", L"北京十月文艺出版社"},
+        {L"《沉默的大多数》", L"王小波", L"北方文艺出版社"}
     };
 
     // 设置行数，等于books的大小
@@ -46,9 +43,9 @@ void MainWindow::initBooks()
         const Book &book = books[i];
 
         // 创建表格项并设置文本
-        QTableWidgetItem *itemTitle = new QTableWidgetItem(book.title);
-        QTableWidgetItem *itemAuthor = new QTableWidgetItem(book.author);
-        QTableWidgetItem *itemPublisher = new QTableWidgetItem(book.publisher);
+        QTableWidgetItem *itemTitle = new QTableWidgetItem(QString::fromStdWString(book.title));
+        QTableWidgetItem *itemAuthor = new QTableWidgetItem(QString::fromStdWString(book.author));
+        QTableWidgetItem *itemPublisher = new QTableWidgetItem(QString::fromStdWString(book.publisher));
 
         // 将项插入到对应的行和列
         ui->tableWidget->setItem(i, 0, itemTitle);      // 图书名称
@@ -56,7 +53,6 @@ void MainWindow::initBooks()
         ui->tableWidget->setItem(i, 2, itemPublisher);   // 出版社
     }
 }
-
 
 void MainWindow::on_pushBtUpdate_clicked()
 {
